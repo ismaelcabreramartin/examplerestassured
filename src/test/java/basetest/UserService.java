@@ -1,101 +1,97 @@
 package basetest;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.gson.Gson;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
 public class UserService extends BaseTest{
 
-    JsonPath response;
     ProductService.ProductsResponse containAllProducts;
     int total;
     int randomValue;
+    private Gson gson = new Gson();
 
-    protected JsonPath getUsersApi() {
+    public UsersResponse getUsersApi() {
 
         logger.info("Calling API products");
 
-        JsonPath res =
+        String res =
                 given(spec)
-                        .contentType(ContentType.JSON)
-                        .when()
-                        .get("/users")
-                        .then()
-                        .statusCode(200)
-                        .extract().jsonPath();
+                    .contentType(ContentType.JSON)
+                .when()
+                    .get("/users")
+                .then()
+                    .statusCode(200)
+                    .extract().body().asString();
 
-        return res;
+        UsersResponse usersResponse = gson.fromJson(res, UsersResponse.class);
+
+        return usersResponse;
     }
 
-    protected String getUserId(int userId) {
+    public String getUserId(int userId) {
 
         System.out.println("*********************************************************************************");
 
         logger.info("Calling API for looking a specific user");
-        JsonPath res = given(spec)
-                .contentType(ContentType.JSON)
+        String res =
+                given(spec)
+                    .contentType(ContentType.JSON)
                 .when()
-                .get("/users/" + userId)
+                    .get("/users/" + userId)
                 .then()
-                .statusCode(200)
-                .extract().jsonPath();
+                    .statusCode(200)
+                    .extract().body().asString();
 
-        String user = res.get().toString();
-
-        return user;
-    }
-    protected UsersResponse getAllUsers(JsonPath res) {
-
-        logger.info("getAllUsers method...");
-
-        Map map = res.get();
-
-        List usersReturn = (List) map.get("users");
-
-        UsersResponse containAllUsers = new UsersResponse();
-
-        containAllUsers.setTotal((int) map.get("total"));
-        containAllUsers.setSkip((int) map.get("skip"));
-        containAllUsers.setLimit((int) map.get("limit"));
-
-        containAllUsers.setUsers((List<User>) usersReturn);
-
-        return containAllUsers;
+        return res;
     }
 
-    protected void printUsers(UsersResponse containAllUsers) {
+    public UsersResponse getSearchUsers(String user) {
+
+        System.out.println("*********************************************************************************");
+
+        logger.info("Calling API for looking a specific user");
+        String res =
+                given(spec)
+                    .contentType(ContentType.JSON)
+                .when()
+                    .get("/users/search?q=" + user)
+                .then()
+                    .statusCode(200)
+                    .extract().body().asString();
+
+        UsersResponse totalUsers = gson.fromJson(res, UsersResponse.class);
+
+        return totalUsers;
+    }
+
+    public void printUsers(UsersResponse containAllUsers) {
 
         logger.info("Next 4 lines are going to print the info coming from Users API");
         logger.info("Display current Total: " + containAllUsers.getTotal());
         logger.info("Display current Skip: " + containAllUsers.getSkip());
         logger.info("Display current Limit: " + containAllUsers.getLimit());
-        logger.info("Display all current users: " + containAllUsers.getUsers());
+        logger.info("Display all current users: " + gson.toJson(containAllUsers.getUsers()));
 
     }
 
+    @Getter
+    @Setter
     public class UsersResponse {
-        @Getter
-        @Setter
+
         private List<User> users;
-        @Getter
-        @Setter
         private int total;
-        @Getter
-        @Setter
         private int skip;
-        @Getter
-        @Setter
         private int limit;
     }
 
+    @Getter
+    @Setter
     public class User {
         private int id;
         private String firstName;
@@ -126,11 +122,15 @@ public class UserService extends BaseTest{
         private String userAgent;
     }
 
+    @Getter
+    @Setter
     public class Hair {
         private String color;
         private String type;
     }
 
+    @Getter
+    @Setter
     public class Address {
         private String address;
         private String city;
@@ -139,11 +139,15 @@ public class UserService extends BaseTest{
         private String state;
     }
 
+    @Getter
+    @Setter
     public class Coordinates {
         private double lat;
         private double lng;
     }
 
+    @Getter
+    @Setter
     public class Bank {
         private String cardExpire;
         private String cardNumber;
@@ -152,6 +156,8 @@ public class UserService extends BaseTest{
         private String iban;
     }
 
+    @Getter
+    @Setter
     public class Company {
         private Address address;
         private String department;
