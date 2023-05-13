@@ -1,7 +1,6 @@
 package tests;
 
 import basetest.CartService;
-import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,20 +48,17 @@ public class testCartService extends CartService {
 
     @Test
     public void getUserCarts() {
-        String cart = "John"
 
-        logger.info("It is going to search user: " + cart);
+        //Get all carts
+        getTotalCarts();
 
-        containAllUsers = getSearchCarts(cart);
-
-        total = containAllUsers.getLimit();
-
+        logger.info("Validate if there is at least 1 cart. If so it will look for userIds");
         if (total == 0) {
-            logger.info("There is no user to display");
+            logger.info("There is no cart to display");
         } else {
 
-            Gson gson = new Gson();
-            logger.info("we have found out the following user/s: " + gson.toJson(containAllUsers.getCarts()));
+            randomValue = getRandomValueFromList(total, 1);
+            logger.info("Print the specific cart: " + getCartsUserId(randomValue, containAllUsers));
         }
 
     }

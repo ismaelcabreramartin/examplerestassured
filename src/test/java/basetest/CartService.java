@@ -48,6 +48,25 @@ public class CartService extends BaseTest{
         return res;
     }
 
+    public String getCartsUserId(Integer id, CartList containAllUsers) {
+
+        List<Cart> carts = containAllUsers.carts;
+
+        System.out.println("*********************************************************************************");
+
+        logger.info("Calling API for looking userId " + carts.get(id).userId);
+        String res =
+                given(spec)
+                    .contentType(ContentType.JSON)
+                .when()
+                    .get("/carts/user/" + carts.get(id).userId)
+                .then()
+                    .statusCode(200)
+                    .extract().body().asString();
+
+        return res;
+    }
+
     public CartList getSearchCarts(String cart) {
 
         System.out.println("*********************************************************************************");
