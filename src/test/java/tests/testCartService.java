@@ -19,7 +19,10 @@ public class testCartService extends CartService {
 
         logger.info("Validate if there is at least 1 cart. If so it will show all carts. ");
         if (total == 0) {
-            logger.info("There is no cart and we cannot show any cart");
+            logger.error("There is no cart and we cannot show any cart");
+
+            //It is going to throw an error to fail the testing
+            throw new IllegalMonitorStateException ("API returned no data");
         } else {
 
             logger.info("Print all carts");
@@ -38,7 +41,10 @@ public class testCartService extends CartService {
 
         logger.info("Validate if there is at least 1 cart. If so it will show all carts. ");
         if (total == 0) {
-            logger.info("There is no cart and we cannot show any cart");
+            logger.error("There is no cart and we cannot show any cart");
+
+            //It is going to throw an error to fail the testing
+            throw new IllegalMonitorStateException ("API returned no data");
         } else {
 
             logger.info("Print the specific cart: " + getCartId(cartId));
@@ -48,14 +54,17 @@ public class testCartService extends CartService {
     @Test
     public void getUserCarts() {
 
-        int userId = 30;
+        int userId = 15;
 
         //Get all carts
         getTotalCarts();
 
         logger.info("Validate if there is at least 1 cart. If so it will look for userIds");
         if (total == 0) {
-            logger.info("There is no cart to display");
+            logger.error("There is no cart to display");
+
+            //It is going to throw an error to fail the testing
+            throw new IllegalMonitorStateException ("API returned no data");
         } else {
 
             logger.info("Print the specific cart: " + getCartsUserId(userId));

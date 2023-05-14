@@ -20,7 +20,10 @@ public class testUserService extends UserService {
 
         logger.info("Validate if there is at least 1 user. If so it will show all users");
         if (total == 0) {
-            logger.info("There is no user and we cannot show any user");
+            logger.error("There is no user and we cannot show any user");
+
+            //It is going to throw an error to fail the testing
+            throw new IllegalMonitorStateException ("API returned no data");
         } else {
 
             logger.info("Print all users");
@@ -39,7 +42,10 @@ public class testUserService extends UserService {
 
         logger.info("Validate if there is at least 1 user. If so it will show the user");
         if (total == 0) {
-            logger.info("There is no user and we cannot show any user");
+            logger.error("There is no user and we cannot show any user");
+
+            //It is going to throw an error to fail the testing
+            throw new IllegalMonitorStateException ("API returned no data");
         } else {
 
             logger.info("Print the specific product: " + getUserId(userId));
@@ -57,7 +63,10 @@ public class testUserService extends UserService {
 
         logger.info("Validate if there is at least 1 user. If so it will show the user");
         if (total == 0) {
-            logger.info("There is no user to display");
+            logger.error("There is no user to display");
+
+            //It is going to throw an error to fail the testing
+            throw new IllegalMonitorStateException ("API returned no data");
         } else {
 
             Gson gson = new Gson();

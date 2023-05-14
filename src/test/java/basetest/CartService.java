@@ -150,9 +150,10 @@ public class CartService extends BaseTest{
 
         logger.info("Validate if the user has a cart. If so it will continue the testing");
         if (total == 0) {
-            logger.info("There is no userId with cart in the database!");
-            List<ProductWithImages> empty = new ArrayList<>();
-            return empty;
+            logger.error("There is no userId with cart in the database!");
+
+            //It is going to throw an error to fail the testing
+            throw new IllegalMonitorStateException ("API returned no data");
         } else {
 
             //CartList containAllCarts = gson.fromJson(total, CartList.class);

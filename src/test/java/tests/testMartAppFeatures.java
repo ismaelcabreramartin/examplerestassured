@@ -60,7 +60,7 @@ public class testMartAppFeatures {
     @Test
     public void testAddProductImagesToUserCart() {
 
-        int userId = 60;
+        int userId = 30;
 
         String[] addImage = {"https://i.dummyjson.com/data/products/11/1.jpg"
                 , "https://i.dummyjson.com/data/products/12/1.jpg"
@@ -77,10 +77,13 @@ public class testMartAppFeatures {
 
         logger.info("Validate if there is at least 1 cart. If so it will look for userIds");
         if (total == 0) {
-            logger.info("There is no cart to display");
+            logger.error("There is no cart to display");
+
+            //It is going to throw an error to fail the testing
+            throw new IllegalMonitorStateException ("API returned no data");
         } else {
 
-            //This method will return if the userId is in the dababase
+            //This method will return if the userId is in the database
             CartService.CartList containAllCarts = gson.fromJson(cartService.getCartsUserId(userId), CartService.CartList.class);
 
             //This method will return the products with images or without nothing if the userId is not in the database

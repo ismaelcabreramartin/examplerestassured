@@ -24,7 +24,10 @@ public class testProductService extends ProductService{
 
         logger.info("Validate if there is at least 1 product. If so it will show all products. " + total);
         if (total == 0) {
-            logger.info("There is no product to display");
+            logger.error("There is no product to display");
+
+            //It is going to throw an error to fail the testing
+            throw new IllegalMonitorStateException ("API returned no data");
         } else {
 
             //Print all products
@@ -48,7 +51,10 @@ public class testProductService extends ProductService{
 
         logger.info("Validate if there is at least 1 product. If so it will show all products. " + total);
         if (total == 0) {
-            logger.info("There is no product to display");
+            logger.error("There is no product to display");
+
+            //It is going to throw an error to fail the testing
+            throw new IllegalMonitorStateException ("API returned no data");
         } else {
 
             Gson gson = new Gson();
@@ -60,13 +66,16 @@ public class testProductService extends ProductService{
     @Test
     public void searchProducts() {
 
-        containAllProducts = getSearchProducts("mentira");
+        containAllProducts = getSearchProducts("phone");
 
         total = containAllProducts.getLimit();
 
         logger.info("Validate if there is at least 1 product according to searchProduct");
         if (total == 0) {
-            logger.info("There is no product to display");
+            logger.error("There is no product to display");
+
+            //It is going to throw an error to fail the testing
+            throw new IllegalMonitorStateException ("API returned no data");
         } else {
 
             logger.info("Print all products according to the searchProduct");
@@ -85,7 +94,10 @@ public class testProductService extends ProductService{
 
         logger.info("Validate if there is at least 1 category. ");
         if (total == 0) {
-            logger.info("There is no category coming from any product");
+            logger.error("There is no category coming from any product");
+
+            //It is going to throw an error to fail the testing
+            throw new IllegalMonitorStateException ("API returned no data");
         } else {
 
             logger.info("Print all categories from the products");
@@ -105,7 +117,10 @@ public class testProductService extends ProductService{
 
         logger.info("Validate if there is at least 1 category. ");
         if (total == 0) {
-            logger.info("There is no category coming from any product");
+            logger.error("There is no category coming from any product");
+
+            //It is going to throw an error to fail the testing
+            throw new IllegalMonitorStateException ("API returned no data");
         } else {
 
             logger.info("Print all products according to the category");

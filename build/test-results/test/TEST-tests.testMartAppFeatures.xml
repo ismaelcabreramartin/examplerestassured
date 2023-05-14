@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.testMartAppFeatures" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-14T21:16:54" hostname="DESKTOP-S7TGGS6" time="2.516">
+  <properties/>
+  <testcase name="testAddProductImagesToUserCart()" classname="tests.testMartAppFeatures" time="2.516"/>
+  <system-out><![CDATA[*********************************************************************************
+]]></system-out>
+  <system-err><![CDATA[[Test worker] INFO org.slf4j.Logger - Calling carts's API
+[Test worker] INFO org.slf4j.Logger - Validate if there is at least 1 cart. If so it will look for userIds
+[Test worker] INFO org.slf4j.Logger - Calling API to look userId
+[Test worker] INFO org.slf4j.Logger - Validate if the user has a cart. If so it will continue the testing
+[Test worker] INFO org.slf4j.Logger - Print user's product: [{"id":96,"title":"lighting ceiling kitchen","price":30,"quantity":2,"total":60,"discountPercentage":14.89,"discountedPrice":51,"image":"https://i.dummyjson.com/data/products/11/1.jpg"},{"id":91,"title":"Black Motorbike","price":569,"quantity":3,"total":1707,"discountPercentage":13.63,"discountedPrice":1474,"image":"https://i.dummyjson.com/data/products/12/1.jpg"},{"id":9,"title":"Infinix INBOOK","price":1099,"quantity":1,"total":1099,"discountPercentage":11.83,"discountedPrice":969,"image":"https://i.dummyjson.com/data/products/13/1.jpg"},{"id":16,"title":"Hyaluronic Acid Serum","price":19,"quantity":1,"total":19,"discountPercentage":13.31,"discountedPrice":16,"image":"https://i.dummyjson.com/data/products/14/1.jpg"},{"id":54,"title":"Pubg Printed Graphic T-Shirt","price":46,"quantity":3,"total":138,"discountPercentage":16.44,"discountedPrice":115,"image":"https://i.dummyjson.com/data/products/15/1.jpg"}]
+]]></system-err>
+</testsuite>
