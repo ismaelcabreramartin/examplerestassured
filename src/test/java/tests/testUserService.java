@@ -11,7 +11,6 @@ public class testUserService extends UserService {
     static Logger logger = LoggerFactory.getLogger(Logger.class);
     UsersResponse containAllUsers;
     int total;
-    int randomValue;
 
     @Test
     public void getAllUsers() {
@@ -19,7 +18,7 @@ public class testUserService extends UserService {
         //Get all users
         getTotalUsers();
 
-        logger.info("Validate if there is at least 1 user. If so it will show all users. ");
+        logger.info("Validate if there is at least 1 user. If so it will show all users");
         if (total == 0) {
             logger.info("There is no user and we cannot show any user");
         } else {
@@ -33,17 +32,17 @@ public class testUserService extends UserService {
     @Test
     public void getUser() {
 
-        //Get all users
-        getAllUsers();
+        int userId = 20;
 
-        logger.info("Validate if there is at least 1 user. If so it will show all users. ");
+        //Get all users
+        getTotalUsers();
+
+        logger.info("Validate if there is at least 1 user. If so it will show the user");
         if (total == 0) {
             logger.info("There is no user and we cannot show any user");
         } else {
 
-            randomValue = getRandomValueFromList(total, 1);
-
-            logger.info("Print the specific product: " + getUserId(randomValue));
+            logger.info("Print the specific product: " + getUserId(userId));
         }
     }
 
@@ -52,18 +51,17 @@ public class testUserService extends UserService {
 
         String user = "John";
 
-        logger.info("It is going to search user: " + user);
-
         containAllUsers = getSearchUsers(user);
 
         total = containAllUsers.getLimit();
 
+        logger.info("Validate if there is at least 1 user. If so it will show the user");
         if (total == 0) {
             logger.info("There is no user to display");
         } else {
 
             Gson gson = new Gson();
-            logger.info("we have found out the following user/s: " + gson.toJson(containAllUsers.getUsers()));
+            logger.info("we have found out the following user: " + gson.toJson(containAllUsers.getUsers()));
         }
     }
 

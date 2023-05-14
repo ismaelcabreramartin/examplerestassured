@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.testMartAppFeatures" tests="4" skipped="0" failures="1" errors="0" timestamp="2023-05-14T04:38:26" hostname="DESKTOP-S7TGGS6" time="2.886">
+  <properties/>
+  <testcase name="testGetCartWithHighestTotal()" classname="tests.testMartAppFeatures" time="0.569"/>
+  <testcase name="testAddProductImagesToUserCart()" classname="tests.testMartAppFeatures" time="1.16">
+    <failure message="java.lang.ClassCastException: class com.google.gson.internal.LinkedTreeMap cannot be cast to class basetest.CartService$Cart (com.google.gson.internal.LinkedTreeMap and basetest.CartService$Cart are in unnamed module of loader 'app')" type="java.lang.ClassCastException">java.lang.ClassCastException: class com.google.gson.internal.LinkedTreeMap cannot be cast to class basetest.CartService$Cart (com.google.gson.internal.LinkedTreeMap and basetest.CartService$Cart are in unnamed module of loader 'app')
+	at basetest.CartService.getAddProductImagesToUserCart(CartService.java:158)
+	at tests.testMartAppFeatures.testAddProductImagesToUserCart(testMartAppFeatures.java:87)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:53)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:79)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:75)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:61)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at com.sun.proxy.$Proxy2.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:133)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</failure>
+  </testcase>
+  <testcase name="testGetProductTitlesByWorseRating()" classname="tests.testMartAppFeatures" time="0.586"/>
+  <testcase name="testGetCartWithLowestTotal()" classname="tests.testMartAppFeatures" time="0.57"/>
+  <system-out><![CDATA[*********************************************************************************
+]]></system-out>
+  <system-err><![CDATA[[Test worker] INFO org.slf4j.Logger - Calling API carts
+[Test worker] INFO org.slf4j.Logger - Checking the highest Total value from the carts list
+[Test worker] INFO org.slf4j.Logger - This is the cart with the highest total value:  {"id":10,"products":[{"id":75,"title":"Seven Pocket Women Bag","price":68,"quantity":1,"total":68,"discountPercentage":14.87,"discountedPrice":58},{"id":39,"title":"Women Sweaters Wool","price":600,"quantity":1,"total":600,"discountPercentage":17.2,"discountedPrice":497},{"id":3,"title":"Samsung Universe 9","price":1249,"quantity":3,"total":3747,"discountPercentage":15.46,"discountedPrice":3168},{"id":7,"title":"Samsung Galaxy Book","price":1499,"quantity":1,"total":1499,"discountPercentage":4.15,"discountedPrice":1437},{"id":93,"title":"Automatic Motor Gas Motorcycles","price":1050,"quantity":3,"total":3150,"discountPercentage":3.34,"discountedPrice":3045}],"total":9064,"discountedTotal":8205,"userId":13,"totalProducts":5,"totalQuantity":9}
+[Test worker] INFO org.slf4j.Logger - Calling API carts
+[Test worker] INFO org.slf4j.Logger - Validate if there is at least 1 cart. If so it will look for userIds
+[Test worker] INFO org.slf4j.Logger - Calling API to look userId
+[Test worker] INFO org.slf4j.Logger - Print StringTempCart: [{"id":2,"products":[{"id":96,"title":"lighting ceiling kitchen","price":30,"quantity":2,"total":60,"discountPercentage":14.89,"discountedPrice":51},{"id":91,"title":"Black Motorbike","price":569,"quantity":3,"total":1707,"discountPercentage":13.63,"discountedPrice":1474},{"id":9,"title":"Infinix INBOOK","price":1099,"quantity":1,"total":1099,"discountPercentage":11.83,"discountedPrice":969},{"id":16,"title":"Hyaluronic Acid Serum","price":19,"quantity":1,"total":19,"discountPercentage":13.31,"discountedPrice":16},{"id":54,"title":"Pubg Printed Graphic T-Shirt","price":46,"quantity":3,"total":138,"discountPercentage":16.44,"discountedPrice":115}],"total":3023,"discountedTotal":2625,"userId":30,"totalProducts":5,"totalQuantity":10}]
+[Test worker] INFO org.slf4j.Logger - Print product [{id=2.0, products=[{id=96.0, title=lighting ceiling kitchen, price=30.0, quantity=2.0, total=60.0, discountPercentage=14.89, discountedPrice=51.0}, {id=91.0, title=Black Motorbike, price=569.0, quantity=3.0, total=1707.0, discountPercentage=13.63, discountedPrice=1474.0}, {id=9.0, title=Infinix INBOOK, price=1099.0, quantity=1.0, total=1099.0, discountPercentage=11.83, discountedPrice=969.0}, {id=16.0, title=Hyaluronic Acid Serum, price=19.0, quantity=1.0, total=19.0, discountPercentage=13.31, discountedPrice=16.0}, {id=54.0, title=Pubg Printed Graphic T-Shirt, price=46.0, quantity=3.0, total=138.0, discountPercentage=16.44, discountedPrice=115.0}], total=3023.0, discountedTotal=2625.0, userId=30.0, totalProducts=5.0, totalQuantity=10.0}]
+[Test worker] INFO org.slf4j.Logger - Calling API products
+[Test worker] INFO org.slf4j.Logger - The products that have a rating less than or equal than... 4.15 are: 
+[Test worker] INFO org.slf4j.Logger - Product: "Samsung Universe 9" has a rating 4.09
+[Test worker] INFO org.slf4j.Logger - Product: "Huawei P30" has a rating 4.09
+[Test worker] INFO org.slf4j.Logger - Product: "Brown Perfume" has a rating 4.0
+[Test worker] INFO org.slf4j.Logger - Product: "Freckle Treatment Cream- 15gm" has a rating 4.06
+[Test worker] INFO org.slf4j.Logger - Product: "Plant Hanger For Home" has a rating 4.08
+[Test worker] INFO org.slf4j.Logger - Calling API carts
+[Test worker] INFO org.slf4j.Logger - Checking the lowest Total value from the carts list
+[Test worker] INFO org.slf4j.Logger - This is the cart with the lowest total value:  {"id":20,"products":[{"id":66,"title":"Steel Analog Couple Watches","price":35,"quantity":3,"total":105,"discountPercentage":3.23,"discountedPrice":102},{"id":59,"title":"Spring and summershoes","price":20,"quantity":1,"total":20,"discountPercentage":8.71,"discountedPrice":18},{"id":29,"title":"Handcraft Chinese style","price":60,"quantity":1,"total":60,"discountPercentage":15.34,"discountedPrice":51},{"id":32,"title":"Sofa for Coffe Cafe","price":50,"quantity":1,"total":50,"discountPercentage":15.59,"discountedPrice":42},{"id":46,"title":"women\u0027s shoes","price":40,"quantity":2,"total":80,"discountPercentage":16.96,"discountedPrice":66}],"total":315,"discountedTotal":279,"userId":75,"totalProducts":5,"totalQuantity":8}
+]]></system-err>
+</testsuite>

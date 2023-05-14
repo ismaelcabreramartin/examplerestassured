@@ -10,7 +10,6 @@ public class testCartService extends CartService {
     static Logger logger = LoggerFactory.getLogger(Logger.class);
     CartList containAllUsers;
     int total;
-    int randomValue;
 
     @Test
     public void getAllCarts() {
@@ -32,6 +31,8 @@ public class testCartService extends CartService {
     @Test
     public void getCart() {
 
+        int cartId = 15;
+
         //Get all carts
         getTotalCarts();
 
@@ -40,14 +41,14 @@ public class testCartService extends CartService {
             logger.info("There is no cart and we cannot show any cart");
         } else {
 
-            randomValue = getRandomValueFromList(total, 1);
-
-            logger.info("Print the specific cart: " + getCartId(randomValue));
+            logger.info("Print the specific cart: " + getCartId(cartId));
         }
     }
 
     @Test
     public void getUserCarts() {
+
+        int userId = 30;
 
         //Get all carts
         getTotalCarts();
@@ -57,8 +58,7 @@ public class testCartService extends CartService {
             logger.info("There is no cart to display");
         } else {
 
-            randomValue = getRandomValueFromList(total, 1);
-            logger.info("Print the specific cart: " + getCartsUserId(randomValue, containAllUsers));
+            logger.info("Print the specific cart: " + getCartsUserId(userId));
         }
 
     }

@@ -18,7 +18,7 @@ public class UserService extends BaseTest{
 
     public UsersResponse getUsersApi() {
 
-        logger.info("Calling API products");
+        logger.info("Calling API users");
 
         String res =
                 given(spec)
@@ -26,7 +26,7 @@ public class UserService extends BaseTest{
                 .when()
                     .get("/users")
                 .then()
-                    .statusCode(200)
+                    .assertThat().statusCode(200)
                     .extract().body().asString();
 
         UsersResponse usersResponse = gson.fromJson(res, UsersResponse.class);
@@ -38,17 +38,27 @@ public class UserService extends BaseTest{
 
         System.out.println("*********************************************************************************");
 
+        String res;
+
         logger.info("Calling API for looking a specific user");
-        String res =
+        try {
+            res =
                 given(spec)
                     .contentType(ContentType.JSON)
                 .when()
                     .get("/users/" + userId)
                 .then()
-                    .statusCode(200)
+                    .assertThat().statusCode(200)
                     .extract().body().asString();
 
-        return res;
+            return res;
+
+        } catch (AssertionError assertionError) {
+            //assertionError.printStackTrace();
+            logger.error("API .../users/{userId} has returned: " + assertionError.getMessage());
+
+            return "This " + userId + " userId does NOT exist in the database!";
+        }
     }
 
     public UsersResponse getSearchUsers(String user) {

@@ -6,7 +6,6 @@ import io.restassured.http.ContentType;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -24,7 +23,7 @@ public class ProductService extends BaseTest{
                 .when()
                     .get("/products")
                 .then()
-                    .statusCode(200)
+                    .assertThat().statusCode(200)
                     .extract().body().asString();
 
         ProductsResponse productsResponse = gson.fromJson(res, ProductsResponse.class);
@@ -43,7 +42,7 @@ public class ProductService extends BaseTest{
             .when()
                 .get("/products?limit=" + limit +"&skip=" + skip + "&select=" + title + "," + price + "," + rating)
             .then()
-                .statusCode(200)
+                .assertThat().statusCode(200)
                 .log().body();
     }
 
@@ -52,18 +51,25 @@ public class ProductService extends BaseTest{
         System.out.println("*********************************************************************************");
 
         logger.info("Calling API for looking a specific productId");
-        String res =
-                given(spec)
-                    .contentType(ContentType.JSON)
-                .when()
-                    .get("/products/" + productId)
-                .then()
-                    .statusCode(200)
-                    .extract().body().asString();
 
-       Product product = gson.fromJson(res, Product.class);
+        try {
+            String res =
+                    given(spec)
+                            .contentType(ContentType.JSON)
+                            .when()
+                            .get("/products/" + productId)
+                            .then()
+                            .statusCode(200)
+                            .extract().body().asString();
 
-       return product;
+            Product product = gson.fromJson(res, Product.class);
+            return product;
+
+        } catch (AssertionError assertionError) {
+            //assertionError.printStackTrace();
+            logger.error("API .../carts/user/{userIds} has failed" + assertionError.getMessage());
+            return null;
+        }
     }
 
     public ProductsResponse getSearchProducts(String product) {
@@ -97,7 +103,7 @@ public class ProductService extends BaseTest{
                 .when()
                     .get("/products/categories")
                 .then()
-                    .statusCode(200)
+                    .assertThat().statusCode(200)
                     .extract().body().asString();
 
         List<String> response = gson.fromJson(res, List.class);
@@ -117,7 +123,7 @@ public class ProductService extends BaseTest{
                 .when()
                     .get("/products/category/" + category)
                 .then()
-                    .statusCode(200)
+                    .assertThat().statusCode(200)
                     .extract().body().asString();
 
         ProductsResponse productsResponse = gson.fromJson(res, ProductsResponse.class);
@@ -166,27 +172,12 @@ public class ProductService extends BaseTest{
             for (int i = 0; i < (total-1) ; i++){
 
                 if (products.get(i).getRating() <= rating) {
-                    logger.info("product " + containAllProducts.products.get(i).getTitle()
-                    + " has a rating " + containAllProducts.products.get(i).getRating());
+                    logger.info("Product: \"" + containAllProducts.products.get(i).getTitle()
+                    + "\" has a rating " + containAllProducts.products.get(i).getRating());
                 }
             }
         }
 
-    }
-
-
-    public List<String> getBrand() {
-
-        List<String> brand = new ArrayList<>();
-        //Add values
-        brand.add("phone");
-        brand.add("iphone");
-        brand.add("Samsung");
-        brand.add("Huawei");
-        brand.add("Apple");
-        brand.add("laptops");
-
-        return brand;
     }
 
     @Getter

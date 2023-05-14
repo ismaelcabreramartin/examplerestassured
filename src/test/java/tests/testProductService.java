@@ -2,6 +2,7 @@ package tests;
 
 import basetest.ProductService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +14,6 @@ public class testProductService extends ProductService{
     static Logger logger = LoggerFactory.getLogger(Logger.class);
     ProductsResponse containAllProducts;
     int total;
-    int randomValue;
-
     List<String> categories;
 
     @Test
@@ -35,12 +34,14 @@ public class testProductService extends ProductService{
 
     @Test
     public void getAllProductsWithParameters() {
-        //VERIFICAR IF I CREATE A NEW TEST
+        logger.info("Entered specific parameters");
         getLimitSkipProducts(10, 5, "title", "price", "rating");
     }
 
     @Test
     public void getProduct() {
+
+        int productId = 20;
 
         //Get all products
         getTotalProducts();
@@ -50,26 +51,22 @@ public class testProductService extends ProductService{
             logger.info("There is no product to display");
         } else {
 
-            randomValue = getRandomValueFromList(total, 1);
+            Gson gson = new Gson();
 
-            logger.info("Print the specific product: " + getProductId(randomValue));
+            logger.info("Print the specific product: " + gson.toJson(getProductId(productId)));
         }
     }
 
     @Test
     public void searchProducts() {
 
-        List<String> brands = getBrand();
-
-        randomValue = getRandomValueFromList(brands.size(), 1);
-
-        containAllProducts = getSearchProducts(brands.get(randomValue));
+        containAllProducts = getSearchProducts("mentira");
 
         total = containAllProducts.getLimit();
 
-        logger.info("Validate if there is at least 1 product according to searchProduct. " + total);
+        logger.info("Validate if there is at least 1 product according to searchProduct");
         if (total == 0) {
-            System.out.println("There is no product to display");
+            logger.info("There is no product to display");
         } else {
 
             logger.info("Print all products according to the searchProduct");
@@ -82,11 +79,13 @@ public class testProductService extends ProductService{
     public void getCategories() throws JsonProcessingException {
 
         //Get all category names
-        getTotalCategoryNames();
+        categories = getCategory();
 
-        logger.info("Validate is there is at least 1 category. " + total);
+        total = categories.size();
+
+        logger.info("Validate if there is at least 1 category. ");
         if (total == 0) {
-            System.out.println("There is no category coming from any product");
+            logger.info("There is no category coming from any product");
         } else {
 
             logger.info("Print all categories from the products");
@@ -98,22 +97,21 @@ public class testProductService extends ProductService{
     @Test
     public void getProductsByCategory() throws JsonProcessingException {
 
-        //Get all category names
-        getTotalCategoryNames();
+        String category = "smartphones";
 
-        logger.info("Validate is there is at least 1 category. " + total);
+        containAllProducts = getListCategory(category);
+
+        total = containAllProducts.getLimit();
+
+        logger.info("Validate if there is at least 1 category. ");
         if (total == 0) {
-            System.out.println("There is no category coming from any product");
+            logger.info("There is no category coming from any product");
         } else {
-
-            randomValue = getRandomValueFromList(total, 1);
-
-            containAllProducts = getListCategory(categories.get(randomValue));
 
             logger.info("Print all products according to the category");
             printProducts(containAllProducts);
-
         }
+
     }
 
     public void getTotalProducts() {
@@ -121,12 +119,5 @@ public class testProductService extends ProductService{
         containAllProducts = getProductsApi();
 
         total = containAllProducts.getLimit();
-    }
-
-    public void getTotalCategoryNames() throws JsonProcessingException {
-
-        categories = getCategory();
-
-        total = categories.size();
     }
 }
