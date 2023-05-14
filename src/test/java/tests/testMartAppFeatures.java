@@ -60,15 +60,15 @@ public class testMartAppFeatures {
     @Test
     public void testAddProductImagesToUserCart() {
 
-        List<CartService.ProductWithImages> productWithImagesList = new ArrayList<>();
-
-        int userId = 30;
+        int userId = 60;
 
         String[] addImage = {"https://i.dummyjson.com/data/products/11/1.jpg"
                 , "https://i.dummyjson.com/data/products/12/1.jpg"
                 , "https://i.dummyjson.com/data/products/13/1.jpg"
                 , "https://i.dummyjson.com/data/products/14/1.jpg"
                 , "https://i.dummyjson.com/data/products/15/1.jpg"};
+
+        List<CartService.ProductWithImages> productWithImagesList = new ArrayList<>();
 
         //Get all carts
         containAllCarts = cartService.getCartsApi();
@@ -80,14 +80,15 @@ public class testMartAppFeatures {
             logger.info("There is no cart to display");
         } else {
 
-            /**********************************************************************************************/
-            /******  The code is failing into cartService.getAddProductImagesToUserCart(...)         ******/
-            /******  The code is failing here because cannot cast to lass basetest.CartService$Cart  ******/
-            /**********************************************************************************************/
-            /*productWithImagesList =*/ cartService.getAddProductImagesToUserCart(cartService.getCartsUserId(userId), addImage);
+            //This method will return if the userId is in the dababase
+            CartService.CartList containAllCarts = gson.fromJson(cartService.getCartsUserId(userId), CartService.CartList.class);
+
+            //This method will return the products with images or without nothing if the userId is not in the database
+            productWithImagesList = cartService.getAddProductImagesToUserCart(containAllCarts, addImage);
+
+            logger.info("Print user's product: " + gson.toJson(productWithImagesList));
 
         }
-
 
     }
 }

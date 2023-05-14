@@ -18,7 +18,7 @@ public class UserService extends BaseTest{
 
     public UsersResponse getUsersApi() {
 
-        logger.info("Calling API users");
+        logger.info("Calling users's API");
 
         String res =
                 given(spec)

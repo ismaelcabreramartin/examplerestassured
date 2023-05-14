@@ -18,7 +18,8 @@ public class BaseTest {
     @BeforeAll
     public static void setUp() {
 
-        logger.info("Starting the TESTING");
+        logger.info("Starting the test");
+        System.out.println("STARTING THE TESTING");
 
     }
 

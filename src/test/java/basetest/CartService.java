@@ -5,7 +5,9 @@ import io.restassured.http.ContentType;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -17,7 +19,7 @@ public class CartService extends BaseTest{
 
     public CartList getCartsApi() {
 
-        logger.info("Calling API carts");
+        logger.info("Calling carts's API");
 
         String res =
                 given(spec)
@@ -76,7 +78,7 @@ public class CartService extends BaseTest{
                 .when()
                     .get("/carts/user/" + userId)
                 .then()
-                    .statusCode(200)
+                    .assertThat().statusCode(200)
                     .extract().body().asString();
 
             return res;
@@ -142,24 +144,52 @@ public class CartService extends BaseTest{
         return lowesttCart;
     }
 
-    public void getAddProductImagesToUserCart(String carts, String[] addImages) {
+    public List<ProductWithImages> getAddProductImagesToUserCart(CartList containAllCarts, String[] addImages) {
 
-        CartList containAllCarts = gson.fromJson(carts, CartList.class);
+        total = containAllCarts.getLimit();
 
-        String stringTempCart = gson.toJson(containAllCarts.getCarts());
-        logger.info("Print StringTempCart: " + stringTempCart);
+        logger.info("Validate if the user has a cart. If so it will continue the testing");
+        if (total == 0) {
+            logger.info("There is no userId with cart in the database!");
+            List<ProductWithImages> empty = new ArrayList<>();
+            return empty;
+        } else {
 
-        List<Cart> tempCart  = gson.fromJson(stringTempCart, List.class);
-        logger.info("Print product " + tempCart);
+            //CartList containAllCarts = gson.fromJson(total, CartList.class);
+            String stringTempCart = gson.toJson(containAllCarts.getCarts());
 
+            /***I have facing issues to convert the previous String to Cart class, so I have figure out ***/
+            /***another solution removing the first [ and last ] working with String, then I can convert it to an object***/
+            //At this moment I can convert the object into Product list*/
+            List<Product> product  = removeSquareBrackets(stringTempCart);
 
-        /**********************************************************************************************/
-        /******  The code is failing here because cannot cast to lass basetest.CartService$Cart  ******/
-        String tempProducts = gson.toJson(tempCart.get(0).getProducts());
+            List<ProductWithImages> productWithImagesList = new ArrayList<>();
 
-        /**********************************************************************************************/
+            for(int i = 0; i < product.size(); i++) {
+                String getProduct = gson.toJson(product.get(i));
 
+                //Add product's image at the end of the elements of the list (currently is a string)
+                getProduct = getProduct.substring(0, getProduct.length()-1) + ",\"image\":\"" + addImages[i] + "\"}";
 
+                //Add the new String into the productWithImagesList
+                productWithImagesList.add(gson.fromJson(getProduct, ProductWithImages.class));
+            }
+            return productWithImagesList;
+        }
+    }
+
+    public List<Product> removeSquareBrackets(String squareBrackets) {
+
+        squareBrackets = squareBrackets.substring(1, squareBrackets.length());
+        squareBrackets = squareBrackets.substring(0, squareBrackets.length()-1);
+
+        // Now I can extract Products list and put it into a Product Object
+        Map<Cart, Object> cart = gson.fromJson(squareBrackets, Map.class);
+
+        //At this moment I can convert the object into Product list
+        List<Product> product  = (List<Product>) cart.get("products");
+
+        return product;
     }
 
     @Getter

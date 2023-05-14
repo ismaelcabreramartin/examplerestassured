@@ -15,7 +15,7 @@ public class ProductService extends BaseTest{
     private Gson gson = new Gson();
     public ProductsResponse getProductsApi() {
 
-        logger.info("Calling API products");
+        logger.info("Calling products's API");
 
         String res =
                 given(spec)
